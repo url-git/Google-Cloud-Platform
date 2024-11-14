@@ -168,3 +168,5 @@ google-cloud-sdk
 service_account.json
 gcs_credentials.json
 configuration.yml
+
+.terraform/

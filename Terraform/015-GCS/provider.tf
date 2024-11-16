@@ -14,7 +14,3 @@ provider "google" {
   zone = "us-central1-a"
   credentials = "keys.json"
 }
-
-resource google_storage_bucket "GCS1"{
-  name = "bucket-from-tf-using-sa"
-}

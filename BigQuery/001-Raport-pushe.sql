@@ -1,19 +1,19 @@
 WITH app_push_robocza AS (
-    SELECT
-        event_date,
-        TIMESTAMP_MICROS(event_timestamp) AS event_timestamp,
-        TIMESTAMP_ADD(TIMESTAMP_MICROS(event_timestamp), INTERVAL 48 HOUR) AS end_window,
-        device.operating_system,
-        event_name,
-        event_params.value.int_value,
-        user_pseudo_id
-    FROM
-        `produkcja-mobile.analytics_152051616.events_*`,
-        UNNEST(event_params) AS event_params
-    WHERE
-        event_name LIKE '%notification_open%'
-        AND event_params.key LIKE 'ga_session_number'
-        AND _TABLE_SUFFIX BETWEEN '20210301' AND FORMAT_DATE('%Y%m%d', DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY))
+	SELECT
+		event_date,
+		TIMESTAMP_MICROS(event_timestamp) AS event_timestamp,
+		TIMESTAMP_ADD(TIMESTAMP_MICROS(event_timestamp), INTERVAL 48 HOUR) AS end_window,
+		device.operating_system,
+		event_name,
+		event_params.value.int_value, # ga_session_number
+		user_pseudo_id
+	FROM
+		`produkcja-mobile.analytics_152051616.events_*`,
+		UNNEST(event_params) AS event_params
+	WHERE
+		event_name LIKE '%notification_open%'
+		AND event_params.key LIKE 'ga_session_number'
+		AND _TABLE_SUFFIX BETWEEN '20210301' AND FORMAT_DATE('%Y%m%d', DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY))
 ),
 
 notyfikacje AS (
@@ -83,7 +83,7 @@ app_push_dziennie AS (
             ELSE 'PL'
         END AS kraj,
         device.operating_system,
-        key1.value.int_value,
+        key1.value.int_value, # ga_session_number
         event_value_in_usd
     FROM
         `produkcja-mobile.analytics_152051616.events_*`,

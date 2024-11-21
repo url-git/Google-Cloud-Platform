@@ -1,5 +1,3 @@
-%%bigquery --project produkcja-instore
-
 WITH app_push_robocza AS (
     SELECT
         event_date,

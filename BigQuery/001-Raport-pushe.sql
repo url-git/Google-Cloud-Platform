@@ -5,7 +5,7 @@ WITH app_push_robocza AS (
 		TIMESTAMP_ADD(TIMESTAMP_MICROS(event_timestamp), INTERVAL 48 HOUR) AS end_window,
 		device.operating_system,
 		event_name,
-		event_params.value.int_value, # ga_session_number
+		event_params.value.int_value,
 		user_pseudo_id
 	FROM
 		`produkcja-mobile.analytics_152051616.events_*`,
@@ -83,7 +83,7 @@ app_push_dziennie AS (
             ELSE 'PL'
         END AS kraj,
         device.operating_system,
-        key1.value.int_value, # ga_session_number
+        key1.value.int_value, 
         event_value_in_usd
     FROM
         `produkcja-mobile.analytics_152051616.events_*`,

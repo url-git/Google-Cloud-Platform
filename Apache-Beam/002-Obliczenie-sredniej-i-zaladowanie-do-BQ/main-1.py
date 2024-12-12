@@ -10,7 +10,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = SERVICE_ACCOUNT_FILE
 options = PipelineOptions()
 
 # Ustawienia Google Cloud
-gcp_options = options.view_as(GoogleCloudOptions) # Zwraca widok opcji skonkretyzowanych dla Google Cloud. Dzięki temu możemy łatwiej ustawiać parametry związane z GCP, takie jak projekt czy lokalizacje w Google Cloud Storage.
+gcp_options = options.view_as(GoogleCloudOptions) 
 gcp_options.project = "your-project-id"
 gcp_options.job_name = "dataflow-average-job"
 gcp_options.staging_location = "gs://your-bucket/staging" # Określa lokalizację w Google Cloud Storage (GCS), gdzie Apache Beam będzie przechowywać pliki tymczasowe wymagane do działania potoku, takie jak skrypty czy pliki wynikowe.
